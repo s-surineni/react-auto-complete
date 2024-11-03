@@ -1,7 +1,7 @@
 FROM node:23-alpine
-WORKDIR /react-app/
-COPY public/ /react-app/public
-COPY src/ /react-app/src
-COPY package.json /react-app/
+WORKDIR /app
+COPY package.json ./
 RUN npm install
-CMD ["npm", "start"]
+COPY . .
+EXPOSE 3000
+CMD [“npm”, “start”]
