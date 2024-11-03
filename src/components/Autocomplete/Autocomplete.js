@@ -10,13 +10,19 @@ const Autocomplete = ({suggestionsList}) => {
     // let filteredSuggestions = [];
     const [inputText, setInputText] = useState("");
     const showSuggestions = (e) => {
-        setInputText(e.target.value);
-        const matchingWords = suggestionsList.filter((suggestion) => {
-            // see what happens if we dont trim
-            return suggestion.toLowerCase().startsWith(inputText.toLowerCase().trim());
-        })
-        setFilteredSuggestions(matchingWords);
-        console.log(filteredSuggestions);
+        const enteredText = e.target.value;
+        setInputText(enteredText);
+
+        if (enteredText.length > 0) {
+            const matchingWords = suggestionsList.filter((suggestion) => {
+                // see what happens if we dont trim
+                return suggestion.toLowerCase().indexOf(enteredText.toLowerCase().trim()) > -1;
+            })
+            setFilteredSuggestions(matchingWords);
+        } else {
+            setFilteredSuggestions([]);
+        }
+
     }
     return (
         <>
