@@ -3,8 +3,7 @@ import Autocomplete from './components/Autocomplete/Autocomplete';
 
 function App() {
   return (
-    <>
-      <h1>Hello</h1>
+    <div className='autocomplete-container'>
       <Autocomplete suggestionsList={[
         "Angular",
         "Blitzjs",
@@ -23,7 +22,7 @@ function App() {
         "Yarn",
         "Npm"
       ]} />
-    </>
+    </div>
   );
 }
 

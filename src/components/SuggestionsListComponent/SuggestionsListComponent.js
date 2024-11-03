@@ -1,8 +1,8 @@
 const SuggestionsListComponent = ({ filteredSuggestions }) => {
     return (filteredSuggestions.length ? (
-        <ul>{filteredSuggestions.map((suggestion, index) => <li key={index}>{suggestion}</li>)}</ul>)
+        <ul className="suggestions-list">{filteredSuggestions.map((suggestion, index) => <li key={index}>{suggestion}</li>)}</ul>)
         : (
-            <h1>No suggestions</h1>)
+            <div>No suggestions</div>)
 
     )
 }

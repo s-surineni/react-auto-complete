@@ -26,8 +26,13 @@ const Autocomplete = ({suggestionsList}) => {
     }
     return (
         <>
+            <h1>React Autocomplete</h1>
+            <h2>Want to see something cool?, start typing</h2>
+            <label htmlFor="user-input">Autocomplete</label>
             <input type="text"
+                id="user-input"
                 value={inputText}
+                placeholder="Type here"
                 onChange={showSuggestions}/>
 
             <SuggestionsListComponent filteredSuggestions={filteredSuggestions} />
