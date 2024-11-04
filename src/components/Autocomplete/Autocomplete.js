@@ -9,10 +9,12 @@ const Autocomplete = ({suggestionsList}) => {
     // is it because the value is being reset in every render?
     // let filteredSuggestions = [];
     const [inputText, setInputText] = useState("");
+    const [displaySuggestions, setDisplaySuggestions] = useState(false);
     const showSuggestions = (e) => {
         const enteredText = e.target.value;
         setInputText(enteredText);
 
+        setDisplaySuggestions(true);
         if (enteredText.length > 0) {
             const matchingWords = suggestionsList.filter((suggestion) => {
                 // see what happens if we dont trim
@@ -37,7 +39,10 @@ const Autocomplete = ({suggestionsList}) => {
 
             <SuggestionsListComponent 
                 filteredSuggestions={filteredSuggestions}
-                setInputText={setInputText} />
+                setInputText={setInputText}
+                setFilteredSuggestions={setFilteredSuggestions}
+                setDisplaySuggestions={setDisplaySuggestions}
+                displaySuggestions={displaySuggestions} />
         </>
     )
 };
