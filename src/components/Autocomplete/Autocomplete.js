@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SuggestionsListComponent from "../SuggestionsListComponent/SuggestionsListComponent";
-const Autocomplete = ({suggestionsList}) => {
-    
+const Autocomplete = ({ suggestionsList }) => {
+
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
     // const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
     // const [showSuggestions, setShowSuggestions] = useState(false);
@@ -10,11 +10,13 @@ const Autocomplete = ({suggestionsList}) => {
     // let filteredSuggestions = [];
     const [inputText, setInputText] = useState("");
     const [displaySuggestions, setDisplaySuggestions] = useState(false);
+    const [focusedSuggestion, setFocusedSuggestion] = useState(0);
     const showSuggestions = (e) => {
         const enteredText = e.target.value;
         setInputText(enteredText);
 
         setDisplaySuggestions(true);
+        setFocusedSuggestion(0);
         if (enteredText.length > 0) {
             const matchingWords = suggestionsList.filter((suggestion) => {
                 // see what happens if we dont trim
@@ -26,6 +28,30 @@ const Autocomplete = ({suggestionsList}) => {
         }
 
     }
+
+    const handleKeyboardControl = (e) => {
+
+        switch (e.key) {
+            case "Enter": // enter
+                setInputText(filteredSuggestions[0]);
+                setDisplaySuggestions(false);
+                break;
+            case "ArrowUp": // up arrow
+                if (focusedSuggestion === 0) {
+                    return;
+                }
+                setFocusedSuggestion(focusedSuggestion - 1);
+                break;
+            case "ArrowDown": // down arrow
+                if (focusedSuggestion === filteredSuggestions.length - 1) {
+                    return;
+                }
+                setFocusedSuggestion(focusedSuggestion + 1);
+                break;
+            default:
+                break;
+        }
+    }
     return (
         <>
             <h1>React Autocomplete</h1>
@@ -35,14 +61,16 @@ const Autocomplete = ({suggestionsList}) => {
                 id="user-input"
                 value={inputText}
                 placeholder="Type here"
-                onChange={showSuggestions}/>
+                onChange={showSuggestions}
+                onKeyDown={handleKeyboardControl} />
 
-            <SuggestionsListComponent 
+            <SuggestionsListComponent
                 filteredSuggestions={filteredSuggestions}
                 setInputText={setInputText}
                 setFilteredSuggestions={setFilteredSuggestions}
                 setDisplaySuggestions={setDisplaySuggestions}
-                displaySuggestions={displaySuggestions} />
+                displaySuggestions={displaySuggestions}
+                focusedSuggestion={focusedSuggestion} />
         </>
     )
 };

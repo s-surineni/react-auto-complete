@@ -1,7 +1,8 @@
 const SuggestionsListComponent = ({ filteredSuggestions,
     setInputText, setFilteredSuggestions,
     setDisplaySuggestions,
-    displaySuggestions }) => {
+    displaySuggestions,
+    focusedSuggestion }) => {
     const handleClick = (e) => {
         setInputText(e.target.innerText);
         setFilteredSuggestions([]);
@@ -10,6 +11,7 @@ const SuggestionsListComponent = ({ filteredSuggestions,
     return (filteredSuggestions.length ? (
         <ul className="suggestions-list">{filteredSuggestions.map((suggestion, index) => {
             return (<li key={index}
+                className={focusedSuggestion === index ? "suggestion-focused" : ""}
                 onClick={handleClick}>{suggestion}</li>)
         })}</ul>)
         : displaySuggestions ? (<div>No suggestions</div>) : ""
