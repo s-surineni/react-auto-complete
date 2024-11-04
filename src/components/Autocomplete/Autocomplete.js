@@ -35,7 +35,9 @@ const Autocomplete = ({suggestionsList}) => {
                 placeholder="Type here"
                 onChange={showSuggestions}/>
 
-            <SuggestionsListComponent filteredSuggestions={filteredSuggestions} />
+            <SuggestionsListComponent 
+                filteredSuggestions={filteredSuggestions}
+                setInputText={setInputText} />
         </>
     )
 };
