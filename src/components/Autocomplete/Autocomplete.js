@@ -35,6 +35,7 @@ const Autocomplete = ({ suggestionsList }) => {
             case "Enter": // enter
                 setInputText(filteredSuggestions[focusedSuggestion]);
                 setDisplaySuggestions(false);
+                setFilteredSuggestions([]);
                 break;
             case "ArrowUp": // up arrow
                 if (focusedSuggestion === 0) {
