@@ -33,7 +33,7 @@ const Autocomplete = ({ suggestionsList }) => {
 
         switch (e.key) {
             case "Enter": // enter
-                setInputText(filteredSuggestions[0]);
+                setInputText(filteredSuggestions[focusedSuggestion]);
                 setDisplaySuggestions(false);
                 break;
             case "ArrowUp": // up arrow
